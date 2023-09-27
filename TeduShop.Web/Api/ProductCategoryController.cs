@@ -38,7 +38,7 @@ namespace TeduShop.Web.Api
 
                 var paginationSet = new PaginationSet<ProductCategoryViewModel>()
                 {
-                    Items = responseData,
+                    Items = responseData.OrderBy(x => x.ID),
                     Page = page,
                     TotalCount = totalRow,
                     TotalPages = (int)Math.Ceiling((decimal)totalRow / pageSize)
