@@ -35,7 +35,7 @@
               <td>{{item.ID}}</td>
               <td>{{item.Name}}</td>
               <td>
-                {{item.CreatedDate}}
+                {{item.CreatedDate | date: "dd/MM/yyyy"}}
               </td>
               <td><span class="badge bg-red">{{item.Status}}</span></td>
             </tr>

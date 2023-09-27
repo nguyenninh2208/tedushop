@@ -25,6 +25,7 @@
     <UseGlobalApplicationHostFile />
     <NuGetPackageImportStamp>
     </NuGetPackageImportStamp>
+    <Use64BitIISExpress />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -289,7 +290,6 @@
     <Content Include="Assets\admin\js\app.min.js" />
     <Content Include="Assets\admin\js\demo.js" />
     <Content Include="Assets\admin\libs\angular-ui-router\release\angular-ui-router.js" />
-    <Content Include="Assets\admin\libs\angular-ui-router\release\angular-ui-router.min.js" />
     <Content Include="Assets\admin\libs\angular-ui-router\src\common.js" />
     <Content Include="Assets\admin\libs\angular-ui-router\src\resolve.js" />
     <Content Include="Assets\admin\libs\angular-ui-router\src\state.js" />
