@@ -11,13 +11,13 @@
 
         function getProductCagories(page) {
             page = page || 0;
-            var config = {
+            var params = {
                 params: {
                     page: page,
                     pageSize: 10
                 }
             }
-            apiService.get('/api/productcategory/getall', config, function (result) {
+            apiService.get('/api/productcategory/getall', params, function (result) {
                 $scope.productCategories = result.data.Items;
                 $scope.page = result.data.Page;
                 $scope.pagesCount = result.data.TotalPages;
