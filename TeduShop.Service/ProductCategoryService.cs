@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Net.Http;
 using TeduShop.Data.Infrastructure;
 using TeduShop.Data.Repositories;
 using TeduShop.Model.Models;
@@ -19,7 +20,6 @@ namespace TeduShop.Service
         IEnumerable<ProductCategory> GetAllByParentId(int parentId);
 
         ProductCategory GetById(int id);
-
         void Save();
     }
 
