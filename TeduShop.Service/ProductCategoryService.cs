@@ -14,6 +14,7 @@ namespace TeduShop.Service
         ProductCategory Delete(int id);
 
         IEnumerable<ProductCategory> GetAll();
+        IEnumerable<ProductCategory> GetAll(string keyword);
 
         IEnumerable<ProductCategory> GetAllByParentId(int parentId);
 
@@ -46,6 +47,12 @@ namespace TeduShop.Service
         public IEnumerable<ProductCategory> GetAll()
         {
             return _ProductCategoryRepository.GetAll();
+        }
+        public IEnumerable<ProductCategory> GetAll(string keyword)
+        {
+            return !string.IsNullOrEmpty(keyword) ?
+                    _ProductCategoryRepository.GetMulti(x => x.Name.Contains(keyword) || x.Description.Contains(keyword)) :
+                    new List<ProductCategory>();
         }
 
         public IEnumerable<ProductCategory> GetAllByParentId(int parentId)
