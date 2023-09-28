@@ -1,9 +1,9 @@
 ﻿(function (app) {
     app.controller('productCategoryListController', productCategoryListController);
 
-    productCategoryListController.$inject = ['$scope', 'apiService'];
+    productCategoryListController.$inject = ['$scope', 'apiService', 'notificationService'];
 
-    function productCategoryListController($scope, apiService) {
+    function productCategoryListController($scope, apiService, notificationService) {
         $scope.productCategories = [];
         $scope.page = 0;
         $scope.pagesCount = 0;
@@ -24,10 +24,17 @@
             }
             apiService.get('/api/productcategory/getall', params, function (result) {
                 $scope.productCategories = result.data.Items;
+                if (result.data.TotalCount == 0) {
+                    notificationService.showWaring('Not found');
+                }
+                else {
+                    notificationService.showSuccess('Found '+result.data.TotalCount+' item');
+                }
                 $scope.page = result.data.Page;
                 $scope.pagesCount = result.data.TotalPages;
                 $scope.totalCount = result.data.TotalCount;
             }, function () {
+                notificationService.showError('Load productcategory failed.');
                 console.log('Load productcategory failed.');
             });
         }
