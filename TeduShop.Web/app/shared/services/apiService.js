@@ -10,6 +10,7 @@
             get: get,
             post: post,
             put: put,
+            del: del
         }
 
         function get(url, params, success, failure) {
@@ -37,5 +38,15 @@
                 failure(error);
             });
         }
+        function del(url, params, success, failure) {
+            $http.delete(url, params).then(function (result) {
+                notificationService.showSuccess('Delete succeed');
+                success(result);
+            }, function (error) {
+                notificationService.showError(error);
+                failure(error);
+            });
+        }
+       
     }
 })(angular.module('tedushop.common'));

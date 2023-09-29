@@ -21,5 +21,9 @@
             templateUrl: "/app/components/product_categories/productCategoryEditView.html",
             controller: "productCategoryEditController"
         });
+        $stateProvider.state('delete_product_categories', {
+            url: "/delete_product_categories/:id",
+            controller: "productCategoryDeleteController"
+        });
     }
 })();
