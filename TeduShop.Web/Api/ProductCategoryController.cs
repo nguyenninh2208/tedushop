@@ -75,9 +75,37 @@ namespace TeduShop.Web.Api
                 return response;
             });
         }
-        
-        [Route("getallparents")]
+
+        [Route("update")]
+        [HttpPost]
+        public HttpResponseMessage Update(HttpRequestMessage request, ProductCategoryViewModel productCategoryVm)
+        {
+            return CreateHttpResponse(request, () =>
+            {
+                HttpResponseMessage response = null;
+                if (!ModelState.IsValid)
+                {
+                    response = request.CreateResponse(HttpStatusCode.BadRequest, ModelState);
+                }
+                else
+                {
+                    var newProductCategory = new ProductCategory();
+                    newProductCategory.UpdateProductCategory(productCategoryVm);
+                    newProductCategory.UpdatedDate = DateTime.Now;
+
+                    _productCategoryService.Update(newProductCategory);
+                    _productCategoryService.Save();
+
+                    var responseData = Mapper.Map<ProductCategory, ProductCategoryViewModel>(newProductCategory);
+                    response = request.CreateResponse(HttpStatusCode.OK, responseData);
+                }
+
+                return response;
+            });
+        }
+
         [HttpGet]
+        [Route("getallparents")]
         public HttpResponseMessage GetAll(HttpRequestMessage request)
         {
             return CreateHttpResponse(request, () =>
@@ -85,6 +113,21 @@ namespace TeduShop.Web.Api
                 var model = _productCategoryService.GetAll();
 
                 var responseData = Mapper.Map<IEnumerable<ProductCategory>, IEnumerable<ProductCategoryViewModel>>(model);
+
+                var response = request.CreateResponse(HttpStatusCode.OK, responseData);
+                return response;
+            });
+        }
+
+        [HttpGet]
+        [Route("getbyid/{id:int}")]
+        public HttpResponseMessage GetById(HttpRequestMessage request, int id)
+        {
+            return CreateHttpResponse(request, () =>
+            {
+                var model = _productCategoryService.GetById(id);
+
+                var responseData = Mapper.Map<ProductCategory, ProductCategoryViewModel>(model);
 
                 var response = request.CreateResponse(HttpStatusCode.OK, responseData);
                 return response;

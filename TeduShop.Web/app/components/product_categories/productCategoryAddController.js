@@ -4,7 +4,6 @@
     productCategoryAddController.$inject = ['$scope', 'apiService', '$location'];
 
     function productCategoryAddController($scope, apiService, $location) {
-        
         $scope.AddProductCategory = AddProductCategory;
         $scope.parentCategories = parentCategories;
         function AddProductCategory() {

@@ -28,7 +28,7 @@
                     notificationService.showWaring('Not found');
                 }
                 else {
-                    notificationService.showSuccess('Found '+result.data.TotalCount+' item');
+                    notificationService.showSuccess('Found ' + result.data.TotalCount + ' item');
                 }
                 $scope.page = result.data.Page;
                 $scope.pagesCount = result.data.TotalPages;

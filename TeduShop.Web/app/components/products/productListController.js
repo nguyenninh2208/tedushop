@@ -1,14 +1,11 @@
 ﻿(function (app) {
     app.controller('productListController', productListController);
 
-
     //inject
 
     productListController.$inject = ['$scope', 'apiService'];
 
-
     function productListController($scope, apiService) {
-
         $scope.products = [];
         $scope.page = 0;
         $scope.pagesCount = 0;
@@ -31,7 +28,6 @@
                 $scope.totalCount = result.data.TotalCount;
 
                 $scope.isLoading = false;
-
             }, function () {
                 console.log('Load products failed.');
                 $scope.isLoading = false;
@@ -40,6 +36,5 @@
 
         //init
         $scope.getProducts();
-
     }
 })(angular.module('tedushop.products'));

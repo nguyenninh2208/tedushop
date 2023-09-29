@@ -8,7 +8,8 @@
     function apiService($http, notificationService) {
         return {
             get: get,
-            post: post
+            post: post,
+            put: put,
         }
 
         function get(url, params, success, failure) {
@@ -20,7 +21,16 @@
         }
         function post(url, params, success, failure) {
             $http.post(url, params).then(function (result) {
-                notificationService.showSuccess('Success');
+                notificationService.showSuccess('Insert succeed');
+                success(result);
+            }, function (error) {
+                notificationService.showError(error);
+                failure(error);
+            });
+        }
+        function put(url, params, success, failure) {
+            $http.put(url, params).then(function (result) {
+                notificationService.showSuccess('Update succeed');
                 success(result);
             }, function (error) {
                 notificationService.showError(error);
