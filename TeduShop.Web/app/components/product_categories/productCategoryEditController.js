@@ -1,12 +1,14 @@
 ﻿(function (app) {
     app.controller('productCategoryEditController', productCategoryEditController);
 
-    productCategoryEditController.$inject = ['$scope', 'apiService', '$location', '$stateParams'];
+    productCategoryEditController.$inject = ['$scope', 'apiService', '$location', '$stateParams', 'commonService'];
 
-    function productCategoryEditController($scope, apiService, $location, $stateParams) {
+    function productCategoryEditController($scope, apiService, $location, $stateParams, commonService) {
         $scope.UpdateProductCategory = UpdateProductCategory;
-        $scope.parentCategories = parentCategories;
-
+        $scope.getSeoTitle = getSeoTitle;
+        function getSeoTitle() {
+            $scope.productCategory.Alias = commonService.getSeoTitle($scope.productCategory.Name);
+        }
         function UpdateProductCategory() {
             var productCategory = $scope.productCategory ?? {};
             apiService.put('/api/productcategory/update', productCategory, function () {
