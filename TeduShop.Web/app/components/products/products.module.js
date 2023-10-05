@@ -6,14 +6,20 @@
     config.$inject = ['$stateProvider', '$urlRouterProvider'];
 
     function config($stateProvider, $urlRouterProvider) {
+
+        console.info("Configuring states...");
+
         $stateProvider.state('products', {
             url: "/products",
             templateUrl: "/app/components/products/productListView.html",
             controller: "productListController"
-        }).state('product_add', {
-            url: "/product_add",
+        });
+
+        $stateProvider.state('add_products', {
+            url: "/add_products",
             templateUrl: "/app/components/products/productAddView.html",
             controller: "productAddController"
         });
+
     }
 })();

@@ -18,12 +18,14 @@ namespace TeduShop.Service
         Product GetById(int id);
 
         void Save();
+        IEnumerable<Product> GetAll(string keyword);
     }
 
     public class ProductService : IProductService
     {
         private IProductRepository _ProductRepository;
         private IUnitOfWork _unitOfWork;
+
 
         public ProductService(IProductRepository ProductRepository, IUnitOfWork unitOfWork)
         {
@@ -59,6 +61,12 @@ namespace TeduShop.Service
         public void Update(Product Product)
         {
             _ProductRepository.Update(Product);
+        }
+        public IEnumerable<Product> GetAll(string keyword)
+        {
+            return !string.IsNullOrEmpty(keyword) ?
+                    _ProductRepository.GetMulti(x => x.Name.Contains(keyword) || x.Description.Contains(keyword)) :
+                    new List<Product>();
         }
     }
 }
